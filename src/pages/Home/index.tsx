@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import api from "../../services/api";
 import { Pokemon } from "../../types/types";
 import axios from "axios";
+import PokemonGrid from "../../components/PokemonGrid";
 
 export default function Home() {
   const [pokemons, setPokemons] = useState<Pokemon[]>([]);
@@ -37,33 +38,22 @@ export default function Home() {
   }
 
   return (
-    <div className="flex flex-col justify-center items-center">
-      <div className="grid grid-cols-3 gap-3 space-x-2 space-y-1">
-        {pokemons.map((pokemon) => (
-          <div
-            className="flex flex-col justify-center items-center "
-            key={pokemon.id}
-          >
-            <h1>{pokemon.name}</h1>
-            <img
-              src={pokemon.sprites.front_default}
-              alt={pokemon.name}
-              className="w-20"
-            />
-            <div className="flex items-center justify-center space-x-1 text-xs">
-              {pokemon.types.map((data) => (
-                <h1 key={data.slot}>{data.type.name}</h1>
-              ))}
-            </div>
-          </div>
-        ))}
+    <div className="flex flex-col justify-center items-center xs:text-base text-xs">
+      <PokemonGrid pokemons={pokemons} />
+      <div className="flex items-center justify-center space-x-3 mt-4">
+        <button
+          className="px-3 py-2 bg-slate-300 rounded-xl"
+          onClick={() => setPage((page) => (page > 1 ? page - 1 : page))}
+        >
+          Página anterior
+        </button>
+        <button
+          className="px-3 py-2 bg-slate-300 rounded-xl"
+          onClick={() => setPage((page) => page + 1)}
+        >
+          Próxima Página
+        </button>
       </div>
-      <button
-        className="px-3 py-2 mt-4 bg-slate-300 rounded-xl"
-        onClick={() => setPage((page) => page + 1)}
-      >
-        Carregar mais
-      </button>
     </div>
   );
 }
