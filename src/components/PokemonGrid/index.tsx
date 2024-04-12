@@ -4,6 +4,7 @@ import { Pokemon } from "../../types/types";
 interface Props {
   pokemons: Pokemon[];
 }
+
 export default function PokemonGrid({ pokemons }: Props) {
   const navigate = useNavigate();
   return (
