@@ -1,7 +1,8 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Pokemon, Stat, Ability, Type } from "../../types/types";
 import api from "../../services/api";
+import FavContext from "../../contexts/FavContext";
 
 function Types({ types }: { types: Type[] }) {
   return (
@@ -41,6 +42,7 @@ function Abilities({ abilities }: { abilities: Ability[] }) {
 
 export default function ViewPokemon() {
   const { id } = useParams();
+  const { addFavorite } = useContext(FavContext);
   const [pokemon, setPokemon] = useState<Pokemon | null>(null);
 
   useEffect(() => {
@@ -74,6 +76,12 @@ export default function ViewPokemon() {
       <h1>xp: {pokemon.base_experience}</h1>
       <Stats stats={pokemon.stats} />
       <Abilities abilities={pokemon.abilities} />
+      <button
+        className="px-3 py-2 bg-slate-300 rounded-xl mt-4"
+        onClick={() => addFavorite(pokemon)}
+      >
+        Favoritar Pokémon
+      </button>
     </div>
   );
 }

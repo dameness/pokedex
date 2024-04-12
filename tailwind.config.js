@@ -40,4 +40,9 @@ export default {
         /(bg|text|border)-(normal|fire|water|electric|grass|ice|fighting|poison|ground|flying|psychic|bug|rock|ghost|dragon|dark|steel|fairy)/,
     },
   ],
+  variants: {
+    extend: {
+      display: ["group-hover"],
+    },
+  },
 };

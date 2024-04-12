@@ -39,7 +39,7 @@ export default function Home() {
 
   return (
     <div className="flex flex-col justify-center items-center xs:text-base text-xs">
-      <PokemonGrid pokemons={pokemons} />
+      <PokemonGrid pokemons={pokemons} isFavoritesGrid={false} />
       <div className="flex items-center justify-center space-x-3 mt-4">
         <button
           className="px-3 py-2 bg-slate-300 rounded-xl"

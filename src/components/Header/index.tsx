@@ -2,10 +2,10 @@ import { Link } from "react-router-dom";
 
 export default function Header() {
   return (
-    <header className="flex items-center justify-between w-screen h-12 p-3 bg-teal-100">
-      <Link className="flex items-center space-x-1" to="/">
+    <header className="flex items-center justify-between w-screen h-12 p-3 mb-4 bg-amber-100">
+      <Link className="flex items-center" to="/">
         <img className="w-8" src="/pokeball.png" alt="pokeball" />
-        <h1>pokedex</h1>
+        <img className="w-24 mb-1" src="/pokedex.png" alt="pokedex-logo" />
       </Link>
 
       <div className="flex items-center space-x-4 text-xs xs:text-base">
