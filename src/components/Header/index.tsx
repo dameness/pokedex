@@ -1,3 +1,4 @@
+import { FaHome, FaStar } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
 export default function Header() {
@@ -8,9 +9,15 @@ export default function Header() {
         <img className="w-24 mb-1" src="/pokedex.png" alt="pokedex-logo" />
       </Link>
 
-      <div className="flex items-center space-x-4 text-xs xs:text-base">
-        <Link to="/">Home</Link>
-        <Link to="/favorites">Favorites</Link>
+      <div className="font-extrabold flex items-center space-x-4  mr-4 text-xs xs:text-sm">
+        <Link to="/" className="flex items-center">
+          <FaHome className="mr-0.5" />
+          Home
+        </Link>
+        <Link to="/favorites" className="flex items-center">
+          <FaStar className="mr-0.5" />
+          Favorites
+        </Link>
       </div>
     </header>
   );

@@ -64,11 +64,13 @@ export default function ViewPokemon() {
           {pokemon.id < 10 ? "#00" : pokemon.id < 100 ? "#0" : "#"}
           {pokemon.id}
         </h1>
-        <h1 className="text-2xl">
+        <h1 className="xs:text-2xl text-xl">
           {pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}
         </h1>
 
-        <Types types={pokemon.types} />
+        <div className="flex xs:flex-row flex-col xs:space-x-2 xs:space-y-0 space-y-2">
+          <Types types={pokemon.types} />
+        </div>
 
         <img
           src={pokemon.sprites.front_default}

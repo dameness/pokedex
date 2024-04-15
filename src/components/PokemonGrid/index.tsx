@@ -20,7 +20,7 @@ export default function PokemonGrid({ pokemons, isFavoritesGrid }: Props) {
           className={`xs:text-lg hover:opacity-75 hover:shadow-md hover:shadow-black text-base text-gray-200 font-bold outline outline-gray-500 flex group relative flex-col justify-center items-center rounded-xl py-4 px-8 sm:px-16 bg-${pokemon.types[0].type.name}`}
           key={pokemon.id}
         >
-          <h1 className="absolute top-0 right-1 text-gray-500">
+          <h1 className="absolute top-0 right-1 text-gray-700">
             {pokemon.id < 10 ? "#00" : pokemon.id < 100 ? "#0" : "#"}
             {pokemon.id}
           </h1>
@@ -50,7 +50,7 @@ export default function PokemonGrid({ pokemons, isFavoritesGrid }: Props) {
               <FaX size={15} />
             </button>
           )}
-          <div className="flex items-center justify-center space-x-2 text-xs">
+          <div className="flex xs:flex-row flex-col items-center justify-center xs:space-y-0 space-y-2 xs:space-x-2 text-xs">
             <Types types={pokemon.types} />
           </div>
         </div>
