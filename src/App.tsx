@@ -9,17 +9,17 @@ export default function App() {
   const [favorites, setFavorites] = useState<Pokemon[]>([]);
 
   function addFavorite(pokemon: Pokemon) {
-    //checar!!!!!
     if (favorites.length >= 9) {
       alert("Você alcançou o número máximo de favoritos!");
       return;
-    } else if (favorites.includes(pokemon)) {
+    }
+    if (favorites.findIndex((value) => value.id === pokemon.id) !== -1) {
+      console.log(favorites.findIndex((value) => value.id === pokemon.id));
       alert("Este pokémon já está nos favoritos!");
       return;
-    } else {
-      const newFavorites = [...favorites, pokemon];
-      setFavorites(newFavorites);
     }
+    const newFavorites = [...favorites, pokemon];
+    setFavorites(newFavorites);
   }
 
   function removeFavorite(id: number) {

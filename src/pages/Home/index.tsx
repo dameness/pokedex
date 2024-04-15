@@ -34,7 +34,7 @@ export default function Home() {
   }, [page]);
 
   if (pokemons.length === 0) {
-    return <h1 className="text-center">Aguarde um momento...</h1>;
+    return <h1 className="text-center">Loading...</h1>;
   }
 
   return (
@@ -45,13 +45,13 @@ export default function Home() {
           className="px-3 py-2 bg-slate-300 rounded-xl"
           onClick={() => setPage((page) => (page > 1 ? page - 1 : page))}
         >
-          Página anterior
+          Prev. Page
         </button>
         <button
           className="px-3 py-2 bg-slate-300 rounded-xl"
           onClick={() => setPage((page) => page + 1)}
         >
-          Próxima Página
+          Next Page
         </button>
       </div>
     </div>

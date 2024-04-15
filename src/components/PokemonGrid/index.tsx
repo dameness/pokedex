@@ -3,6 +3,7 @@ import { Pokemon } from "../../types/types";
 import { useContext } from "react";
 import FavContext from "../../contexts/FavContext";
 import { FaEye, FaX } from "react-icons/fa6";
+import Types from "../Types";
 
 interface Props {
   pokemons: Pokemon[];
@@ -16,10 +17,17 @@ export default function PokemonGrid({ pokemons, isFavoritesGrid }: Props) {
     <div className="grid grid-cols-3 xs:gap-x-10 gap-3">
       {pokemons.map((pokemon) => (
         <div
-          className={`flex group relative flex-col justify-center items-center rounded-xl py-4 px-8 sm:px-16 bg-${pokemon.types[0].type.name}`}
+          className={`xs:text-lg hover:opacity-75 hover:shadow-md hover:shadow-black text-base text-gray-200 font-bold outline outline-gray-500 flex group relative flex-col justify-center items-center rounded-xl py-4 px-8 sm:px-16 bg-${pokemon.types[0].type.name}`}
           key={pokemon.id}
         >
-          <h1>{pokemon.name}</h1>
+          <h1 className="absolute top-0 right-1 text-gray-500">
+            {pokemon.id < 10 ? "#00" : pokemon.id < 100 ? "#0" : "#"}
+            {pokemon.id}
+          </h1>
+          <h1 className="mt-2">
+            {pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}
+          </h1>
+
           <img
             src={pokemon.sprites.front_default}
             alt={pokemon.name}
@@ -27,7 +35,7 @@ export default function PokemonGrid({ pokemons, isFavoritesGrid }: Props) {
           />
 
           <button
-            className="hidden group-hover:inline-block bg-slate-300 px-2 rounded-full absolute top-1 left-1"
+            className="hidden group-hover:inline-block bg-slate-300 text-gray-600 p-2 rounded-full absolute top-1 left-1"
             onClick={() =>
               navigate(`/pokemon/${pokemon.id}`, { replace: true })
             }
@@ -36,16 +44,14 @@ export default function PokemonGrid({ pokemons, isFavoritesGrid }: Props) {
           </button>
           {isFavoritesGrid && (
             <button
-              className="hidden group-hover:inline-block bg-red-300 px-2 rounded-full absolute top-1 right-1"
+              className="hidden group-hover:inline-block bg-red-300 text-gray-600 p-2 rounded-full absolute top-1 right-1"
               onClick={() => removeFavorite(pokemon.id)}
             >
               <FaX size={15} />
             </button>
           )}
-          <div className="flex items-center justify-center space-x-1 text-xs">
-            {pokemon.types.map((data) => (
-              <h1 key={data.slot}>{data.type.name}</h1>
-            ))}
+          <div className="flex items-center justify-center space-x-2 text-xs">
+            <Types types={pokemon.types} />
           </div>
         </div>
       ))}

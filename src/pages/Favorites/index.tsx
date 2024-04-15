@@ -6,7 +6,7 @@ export default function Favorites() {
   const { favorites } = useContext(FavContext);
 
   if (favorites.length === 0) {
-    return <h1 className="text-center">Ainda não há favoritos...</h1>;
+    return <h1 className="text-center">There's still no favorites...</h1>;
   }
 
   return (
