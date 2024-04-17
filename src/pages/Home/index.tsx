@@ -10,15 +10,15 @@ export default function Home() {
   const perPage = 9;
 
   async function getPokemons() {
-    let endpoints = [];
-    for (let i = (page - 1) * perPage + 1; i <= page * perPage; i++) {
+    const endpoints = [];
+    for (var i = (page - 1) * perPage + 1; i <= page * perPage; i++) {
       endpoints.push(`/pokemon/${i}`);
     }
     try {
       await axios
         .all(endpoints.map((endpoint) => api.get(endpoint)))
         .then((res) => {
-          let pokemons: Pokemon[] = [];
+          const  pokemons: Pokemon[] = [];
           res.map((element) => {
             pokemons.push(element.data);
           });
