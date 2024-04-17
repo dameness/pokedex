@@ -3,7 +3,7 @@ import "./App.css";
 import router from "./router";
 import FavContext from "./contexts/FavContext";
 import { useState } from "react";
-import { Pokemon } from "./types/types";
+import { Pokemon } from "./models/Pokemon";
 
 export default function App() {
   const [favorites, setFavorites] = useState<Pokemon[]>([]);

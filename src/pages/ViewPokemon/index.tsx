@@ -1,6 +1,8 @@
 import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { Pokemon, Stat, Ability } from "../../types/types";
+import { Pokemon } from "../../models/Pokemon";
+import { Stat } from "../../models/Stat";
+import { Ability } from "../../models/Ability";
 import api from "../../services/api";
 import FavContext from "../../contexts/FavContext";
 import Types from "../../components/Types";

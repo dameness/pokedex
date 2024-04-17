@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import api from "../../services/api";
-import { Pokemon } from "../../types/types";
+import { Pokemon } from "../../models/Pokemon"
 import axios from "axios";
 import PokemonGrid from "../../components/PokemonGrid";
 

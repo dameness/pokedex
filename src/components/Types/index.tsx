@@ -1,4 +1,4 @@
-import { Type } from "../../types/types";
+import { Type } from "../../models/Type";
 export default function Types({ types }: { types: Type[] }) {
   return (
     <>

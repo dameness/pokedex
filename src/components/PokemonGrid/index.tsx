@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { Pokemon } from "../../types/types";
+import { Pokemon } from "../../models/Pokemon";
 import { useContext } from "react";
 import FavContext from "../../contexts/FavContext";
 import { FaEye, FaX } from "react-icons/fa6";

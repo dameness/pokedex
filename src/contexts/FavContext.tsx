@@ -1,5 +1,5 @@
 import { createContext } from "react";
-import { Pokemon } from "../types/types";
+import { Pokemon } from "../models/Pokemon";
 
 interface Context {
   favorites: Pokemon[];
