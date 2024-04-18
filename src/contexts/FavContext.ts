@@ -1,9 +1,8 @@
 import { createContext } from "react";
-import { Pokemon } from "../models/Pokemon";
 
 interface Context {
-  favorites: Pokemon[];
-  addFavorite: (pokemon: Pokemon) => void;
+  favorites: number[];
+  addFavorite: (id: number) => void;
   removeFavorite: (id: number) => void;
 }
 

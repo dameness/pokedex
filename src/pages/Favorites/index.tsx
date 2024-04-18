@@ -11,7 +11,7 @@ export default function Favorites() {
 
   return (
     <div>
-      <PokemonGrid pokemons={favorites} isFavoritesGrid={true} />
+      <PokemonGrid pokemonIds={favorites} isFavoritesGrid={true} />
     </div>
   );
 }

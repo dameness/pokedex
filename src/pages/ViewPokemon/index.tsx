@@ -99,7 +99,7 @@ export default function ViewPokemon() {
       </div>
       <button
         className="px-3 py-2 bg-slate-300 rounded-xl mt-4"
-        onClick={() => addFavorite(pokemon)}
+        onClick={() => addFavorite(pokemon.id)}
       >
         Add Favorite
       </button>

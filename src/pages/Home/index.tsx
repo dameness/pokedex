@@ -1,45 +1,26 @@
 import { useEffect, useState } from "react";
-import api from "../../config/api";
-import { Pokemon } from "../../models/Pokemon"
-import axios from "axios";
 import PokemonGrid from "../../components/PokemonGrid";
 
 export default function Home() {
-  const [pokemons, setPokemons] = useState<Pokemon[]>([]);
+  const [pokemonIds, setPokemonIds] = useState<number[]>([]);
   const [page, setPage] = useState(1);
   const perPage = 9;
 
-  async function getPokemons() {
-    const endpoints = [];
+  async function getPokemonIds() {
+    const ids = [];
     for (var i = (page - 1) * perPage + 1; i <= page * perPage; i++) {
-      endpoints.push(`/pokemon/${i}`);
+      ids.push(i);
     }
-    try {
-      await axios
-        .all(endpoints.map((endpoint) => api.get(endpoint)))
-        .then((res) => {
-          const  pokemons: Pokemon[] = [];
-          res.map((element) => {
-            pokemons.push(element.data);
-          });
-          setPokemons(pokemons);
-        });
-    } catch (error) {
-      console.error(error);
-    }
+    setPokemonIds(ids);
   }
 
   useEffect(() => {
-    getPokemons();
+    getPokemonIds();
   }, [page]);
-
-  if (pokemons.length === 0) {
-    return <h1 className="text-center">Loading...</h1>;
-  }
 
   return (
     <div className="flex flex-col justify-center items-center xs:text-base text-xs">
-      <PokemonGrid pokemons={pokemons} isFavoritesGrid={false} />
+      <PokemonGrid pokemonIds={pokemonIds} isFavoritesGrid={false} />
       <div className="flex items-center justify-center space-x-3 mt-4">
         <button
           className="px-3 py-2 bg-slate-300 rounded-xl"

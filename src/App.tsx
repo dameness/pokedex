@@ -3,27 +3,25 @@ import "./App.css";
 import router from "./router";
 import FavContext from "./contexts/FavContext";
 import { useState } from "react";
-import { Pokemon } from "./models/Pokemon";
 
 export default function App() {
-  const [favorites, setFavorites] = useState<Pokemon[]>([]);
+  const [favorites, setFavorites] = useState<number[]>([]);
 
-  function addFavorite(pokemon: Pokemon) {
+  function addFavorite(id: number) {
     if (favorites.length >= 9) {
       alert("Você alcançou o número máximo de favoritos!");
       return;
     }
-    if (favorites.findIndex((value) => value.id === pokemon.id) !== -1) {
-      console.log(favorites.findIndex((value) => value.id === pokemon.id));
+    if (favorites.findIndex((value) => value === id) !== -1) {
       alert("Este pokémon já está nos favoritos!");
       return;
     }
-    const newFavorites = [...favorites, pokemon];
+    const newFavorites = [...favorites, id];
     setFavorites(newFavorites);
   }
 
   function removeFavorite(id: number) {
-    const newFavorites = favorites.filter((pokemon) => pokemon.id != id);
+    const newFavorites = favorites.filter((pokemonId) => pokemonId != id);
     setFavorites(newFavorites);
   }
 
