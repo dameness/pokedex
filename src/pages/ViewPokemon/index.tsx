@@ -1,43 +1,11 @@
 import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Pokemon } from "../../models/Pokemon";
-import { Stat } from "../../models/Stat";
-import { Ability } from "../../models/Ability";
 import api from "../../config/api";
 import FavContext from "../../contexts/FavContext";
 import Types from "../../components/Types";
-
-function Stats({ stats }: { stats: Stat[] }) {
-  return (
-    <>
-      {stats.map((data) => (
-        <div
-          key={data.stat.name}
-          className=" font-extrabold rounded-sm py-1.5 px-6 bg-slate-300 flex items-center justify-between"
-        >
-          <h1 className="text-xs">{data.stat.name.toUpperCase()} :</h1>
-          <h1 className="text-sm">{data.base_stat}</h1>
-        </div>
-      ))}
-    </>
-  );
-}
-
-function Abilities({ abilities }: { abilities: Ability[] }) {
-  return (
-    <>
-      {abilities.map((data) => (
-        <div
-          key={data.slot}
-          className="font-extrabold rounded-sm py-1.5 px-6 bg-slate-300 flex items-center justify-between"
-        >
-          <h1 className="text-xs">SLOT [ {data.slot} ] :</h1>
-          <h1 className="text-sm">{data.ability.name.toUpperCase()}</h1>
-        </div>
-      ))}
-    </>
-  );
-}
+import Stats from "./utils/Stats";
+import Abilities from "./utils/Abilities";
 
 export default function ViewPokemon() {
   const { id } = useParams();
