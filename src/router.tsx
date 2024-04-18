@@ -4,7 +4,7 @@ import RootLayout from "./components/RootLayout";
 import Favorites from "./pages/Favorites";
 import ViewPokemon from "./pages/ViewPokemon";
 import NotFound from "./pages/NotFound";
-///
+
 const router = createBrowserRouter([
   {
     path: "/",
