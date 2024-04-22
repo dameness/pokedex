@@ -44,15 +44,16 @@ export default function Search() {
 
   return (
     <div className="flex flex-col justify-center items-center">
-      <div className="flex items-center gap-2 bg-white w-min px-4 py-2 rounded-lg mb-8">
+      <div className="flex items-center mb-8 gap-1">
         <input
+          className="bg-white px-4 py-2 rounded-lg "
           type="text"
-          placeholder="Search..."
+          placeholder="Search pokémon..."
           value={input}
           onChange={handleInputChange}
         />
         <button
-          className="p-3 rounded-lg bg-slate-200"
+          className="p-3 rounded-lg bg-slate-200 hover:bg-slate-700 hover:text-slate-200 transition-all"
           onClick={filterPokemons}
         >
           <FaSearch />
