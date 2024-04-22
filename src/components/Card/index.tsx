@@ -23,7 +23,7 @@ export default function Card({ pokemonId, isFavoritesGrid }: Props) {
     <>
       {pokemon && (
         <div
-          className={`xs:text-lg hover:opacity-75 hover:shadow-md hover:shadow-black text-base text-gray-200 font-bold outline outline-gray-500 flex group relative flex-col justify-center items-center rounded-xl py-4 px-8 sm:px-16 bg-${pokemon.types[0].type.name}`}
+          className={`xs:text-lg hover:opacity-75 hover:shadow-md hover:shadow-black text-base text-gray-200 font-bold outline outline-gray-500 flex group relative flex-col justify-center items-center rounded-xl py-4 px-8 sm:px-16 bg-gradient-to-b from-${pokemon.types[0].type.name} to-slate-200`}
           key={pokemon.id}
         >
           <h1 className="absolute top-0 right-1 text-gray-700">
