@@ -13,16 +13,10 @@ export default function Search() {
   const { pokemonList, isFetching } = useFetchAllPokemons();
 
   const getPokemonIds = () => {
-    const displayIds: number[][] = [];
-
-    for (let i = 0; i < pokemonIds.length; i += perPage) {
-      displayIds.push(pokemonIds.slice(i, i + perPage));
-    }
-    return displayIds[page - 1];
-  };
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setInput(e.target.value);
+    return pokemonIds.slice(
+      perPage * (page - 1),
+      perPage * (page - 1) + perPage
+    );
   };
 
   const filterPokemons = () => {
@@ -50,7 +44,7 @@ export default function Search() {
           type="text"
           placeholder="Search pokémon..."
           value={input}
-          onChange={handleInputChange}
+          onChange={(e) => setInput(e.target.value)}
         />
         <button
           className="p-3 rounded-lg bg-slate-200 hover:bg-slate-700 hover:text-slate-200 transition-all"
