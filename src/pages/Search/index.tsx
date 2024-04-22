@@ -1,13 +1,25 @@
-import { useCallback, useEffect, useState } from "react";
+import { useState } from "react";
 import { useFetchAllPokemons } from "../../services/pokemon/fetchAllPokemons";
 import { FaSearch } from "react-icons/fa";
 import PokemonGrid from "../../components/PokemonGrid";
+import PageButtons from "../../components/PageButtons";
 
 export default function Search() {
   const [pokemonIds, setPokemonIds] = useState<number[]>([]);
   const [input, setInput] = useState("");
+  const [page, setPage] = useState(1);
+  const perPage = 9;
 
   const { pokemonList, isFetching } = useFetchAllPokemons();
+
+  const getPokemonIds = () => {
+    const displayIds: number[][] = [];
+
+    for (let i = 0; i < pokemonIds.length; i += perPage) {
+      displayIds.push(pokemonIds.slice(i, i + perPage));
+    }
+    return displayIds[page - 1];
+  };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInput(e.target.value);
@@ -22,7 +34,8 @@ export default function Search() {
       Ids.push(+pokemon.url.slice(34, -1));
     });
 
-    setPokemonIds(Ids.slice(0, 9));
+    setPage(1);
+    setPokemonIds(Ids);
   };
 
   if (isFetching === true) {
@@ -45,7 +58,16 @@ export default function Search() {
           <FaSearch />
         </button>
       </div>
-      <PokemonGrid pokemonIds={pokemonIds} isFavoritesGrid={false} />
+
+      {pokemonIds.length > 0 && (
+        <>
+          <PokemonGrid pokemonIds={getPokemonIds()} isFavoritesGrid={false} />
+          <PageButtons
+            setPage={setPage}
+            maxPages={Math.ceil(pokemonIds.length / perPage)}
+          />
+        </>
+      )}
     </div>
   );
 }

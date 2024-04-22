@@ -7,13 +7,13 @@ export default function Home() {
   const [page, setPage] = useState(1);
   const perPage = 9;
 
-  async function getPokemonIds() {
+  const getPokemonIds = () => {
     const ids = [];
     for (var i = (page - 1) * perPage + 1; i <= page * perPage; i++) {
       ids.push(i);
     }
     setPokemonIds(ids);
-  }
+  };
 
   useEffect(() => {
     getPokemonIds();
@@ -22,9 +22,8 @@ export default function Home() {
   return (
     <div className="flex flex-col justify-center items-center xs:text-base text-xs">
       <PokemonGrid pokemonIds={pokemonIds} isFavoritesGrid={false} />
-      <div className="flex items-center justify-center gap-3 mt-4">
-        <PageButtons setPage={setPage} />
-      </div>
+
+      <PageButtons setPage={setPage} />
     </div>
   );
 }
