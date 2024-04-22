@@ -4,6 +4,7 @@ import RootLayout from "./components/RootLayout";
 import Favorites from "./pages/Favorites";
 import ViewPokemon from "./pages/ViewPokemon";
 import NotFound from "./pages/NotFound";
+import Search from "./pages/Search";
 
 const router = createBrowserRouter([
   {
@@ -21,6 +22,10 @@ const router = createBrowserRouter([
       {
         path: "/favorites",
         element: <Favorites />,
+      },
+      {
+        path: "/search",
+        element: <Search />,
       },
       {
         path: "*",

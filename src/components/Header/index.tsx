@@ -1,4 +1,4 @@
-import { FaHome, FaStar } from "react-icons/fa";
+import { FaHome, FaSearch, FaStar } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
 export default function Header() {
@@ -27,6 +27,13 @@ export default function Header() {
         >
           <FaStar className="mr-1" size={17} />
           Favorites
+        </Link>
+        <Link
+          to="/search"
+          className="flex text-slate-800 items-center hover:text-slate-600"
+        >
+          <FaSearch className="mr-1" size={17} />
+          Search
         </Link>
       </div>
     </header>
