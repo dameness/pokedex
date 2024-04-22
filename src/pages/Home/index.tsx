@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import PokemonGrid from "../../components/PokemonGrid";
-import { FaAngleLeft, FaAngleRight } from "react-icons/fa6";
+import PageButtons from "../../components/PageButtons";
 
 export default function Home() {
   const [pokemonIds, setPokemonIds] = useState<number[]>([]);
@@ -23,20 +23,7 @@ export default function Home() {
     <div className="flex flex-col justify-center items-center xs:text-base text-xs">
       <PokemonGrid pokemonIds={pokemonIds} isFavoritesGrid={false} />
       <div className="flex items-center justify-center gap-3 mt-4">
-        <button
-          className="px-3 py-2 bg-slate-300 rounded-xl flex items-center justify-center gap-2 hover:bg-slate-800 hover:text-slate-100 transition"
-          onClick={() => setPage((page) => (page > 1 ? page - 1 : page))}
-        >
-          <FaAngleLeft />
-          Prev.
-        </button>
-        <button
-          className="px-3 py-2 bg-slate-300 rounded-xl flex items-center justify-center gap-2 hover:bg-slate-800 hover:text-slate-100 transition"
-          onClick={() => setPage((page) => page + 1)}
-        >
-          Next
-          <FaAngleRight />
-        </button>
+        <PageButtons setPage={setPage} />
       </div>
     </div>
   );
