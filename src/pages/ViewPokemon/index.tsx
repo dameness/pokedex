@@ -8,6 +8,7 @@ import Stats from "./utils/Stats";
 import Abilities from "./utils/Abilities";
 import StandardButton from "@/components/StandardButton";
 import AttributeDiv from "./utils/AttributeDiv";
+import { Star } from "lucide-react";
 
 export default function ViewPokemon() {
   const { id } = useParams();
@@ -66,7 +67,8 @@ export default function ViewPokemon() {
           className="min-w-80 w-80"
         />
         <StandardButton onClick={() => addFavorite(pokemon.id)}>
-          Add Favorite
+          <Star className="-mr-0.5" size={20} />
+          Add to Favorites
         </StandardButton>
       </div>
     </div>

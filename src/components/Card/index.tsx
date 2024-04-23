@@ -16,8 +16,8 @@ export default function Card({ pokemonId, isFavoritesGrid }: Props) {
 
   const { pokemon, isFetching } = useFetchPokemons(pokemonId);
 
-  if (isFetching === true) {
-    return <h1>...</h1>;
+  if (isFetching) {
+    return <></>;
   }
   return (
     <>
