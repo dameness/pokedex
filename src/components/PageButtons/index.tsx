@@ -1,4 +1,5 @@
 import { FaAngleLeft, FaAngleRight } from "react-icons/fa6";
+import StandardButton from "../StandardButton";
 
 interface Props {
   setPage: React.Dispatch<React.SetStateAction<number>>;
@@ -7,16 +8,13 @@ interface Props {
 export default function PageButtons({ setPage, maxPages }: Props) {
   return (
     <div className="flex items-center justify-center gap-3 mt-4">
-      {" "}
-      <button
-        className="px-3 py-2 bg-slate-300 rounded-xl flex items-center justify-center gap-2 hover:bg-slate-800 hover:text-slate-100 transition"
+      <StandardButton
         onClick={() => setPage((page) => (page > 1 ? page - 1 : page))}
       >
         <FaAngleLeft />
         Prev.
-      </button>
-      <button
-        className="px-3 py-2 bg-slate-300 rounded-xl flex items-center justify-center gap-2 hover:bg-slate-800 hover:text-slate-100 transition"
+      </StandardButton>
+      <StandardButton
         onClick={() =>
           setPage((page) => {
             if (!maxPages) return page + 1;
@@ -29,7 +27,7 @@ export default function PageButtons({ setPage, maxPages }: Props) {
       >
         Next
         <FaAngleRight />
-      </button>
+      </StandardButton>
     </div>
   );
 }
