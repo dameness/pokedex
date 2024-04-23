@@ -11,6 +11,9 @@ export default function Favorites() {
 
   return (
     <div>
+      <h1 className="text-4xl font-bold text-slate-800 mb-6 text-center">
+        Favorites
+      </h1>
       <PokemonGrid pokemonIds={favorites} isFavoritesGrid={true} />
     </div>
   );

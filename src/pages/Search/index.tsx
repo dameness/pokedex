@@ -37,32 +37,37 @@ export default function Search() {
   }
 
   return (
-    <div className="flex flex-col justify-center items-center">
-      <div className="flex items-center mb-8 gap-1">
-        <input
-          className="bg-white px-4 py-2 rounded-lg "
-          type="text"
-          placeholder="Search pokémon..."
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-        />
-        <button
-          className="p-3 rounded-lg bg-slate-200 hover:bg-slate-700 hover:text-slate-200 transition-all"
-          onClick={filterPokemons}
-        >
-          <FaSearch />
-        </button>
-      </div>
-
-      {pokemonIds.length > 0 && (
-        <>
-          <PokemonGrid pokemonIds={getPokemonIds()} isFavoritesGrid={false} />
-          <PageButtons
-            setPage={setPage}
-            maxPages={Math.ceil(pokemonIds.length / perPage)}
+    <>
+      <h1 className="text-4xl font-bold text-slate-800 mb-6 text-center">
+        Favorites
+      </h1>
+      <div className="flex flex-col justify-center items-center">
+        <div className="flex items-center mb-8 gap-1">
+          <input
+            className="bg-white px-4 py-2 rounded-lg "
+            type="text"
+            placeholder="Search pokémon..."
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
           />
-        </>
-      )}
-    </div>
+          <button
+            className="p-3 rounded-lg bg-slate-200 hover:bg-slate-700 hover:text-slate-200 transition-all"
+            onClick={filterPokemons}
+          >
+            <FaSearch />
+          </button>
+        </div>
+
+        {pokemonIds.length > 0 && (
+          <>
+            <PokemonGrid pokemonIds={getPokemonIds()} isFavoritesGrid={false} />
+            <PageButtons
+              setPage={setPage}
+              maxPages={Math.ceil(pokemonIds.length / perPage)}
+            />
+          </>
+        )}
+      </div>
+    </>
   );
 }
