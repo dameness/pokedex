@@ -7,6 +7,7 @@ import Types from "../../components/Types";
 import Stats from "./utils/Stats";
 import Abilities from "./utils/Abilities";
 import StandardButton from "@/components/StandardButton";
+import AttributeDiv from "./utils/AttributeDiv";
 
 export default function ViewPokemon() {
   const { id } = useParams();
@@ -38,18 +39,18 @@ export default function ViewPokemon() {
             <Types types={pokemon.types} />
           </div>
         </div>
-        <div className="font-extrabold rounded-sm py-1.5 px-6 bg-slate-300 flex items-center justify-between">
+        <AttributeDiv>
           <h1 className="text-xs">WEIGHT :</h1>
           <h1 className="text-sm">{pokemon.weight}</h1>
-        </div>
-        <div className="font-extrabold rounded-sm py-1.5 px-6 bg-slate-300 flex items-center justify-between">
+        </AttributeDiv>
+        <AttributeDiv>
           <h1 className="text-xs">HEIGHT :</h1>
           <h1 className="text-sm">{pokemon.height}</h1>
-        </div>
-        <div className="font-extrabold rounded-sm py-1.5 px-6 bg-slate-300 flex items-center justify-between">
+        </AttributeDiv>
+        <AttributeDiv>
           <h1 className="text-xs">XP :</h1>
           <h1 className="text-sm">{pokemon.base_experience}</h1>
-        </div>
+        </AttributeDiv>
         <Stats stats={pokemon.stats} />
         <Abilities abilities={pokemon.abilities} />
         <div className="flex items-center gap-2"></div>
