@@ -13,7 +13,8 @@ body,
 body {
   font: 14px;
   font-family: sans-serif;
-  background-color: #efefef;
+  //background-color: #efefef;
+  @apply bg-amber-100;
 }
 
 a {

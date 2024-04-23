@@ -23,21 +23,29 @@ export default function Card({ pokemonId, isFavoritesGrid }: Props) {
     <>
       {pokemon && (
         <div
-          className={`xs:text-lg hover:opacity-85 hover:shadow-md hover:shadow-black text-base text-gray-200 font-bold outline outline-gray-500 flex group relative flex-col justify-center items-center rounded-xl py-4 px-8 sm:px-16 bg-gradient-to-b from-${pokemon.types[0].type.name} to-slate-200`}
+          className={`  
+          sm:px-16 py-4 px-12 
+          relative flex group flex-col justify-center items-center rounded-xl 
+          xs:text-lg text-base text-gray-200 font-bold 
+          hover:opacity-85 hover:shadow-md hover:shadow-black 
+          bg-gradient-to-b from-${pokemon.types[0].type.name} to-slate-200 outline outline-${pokemon.types[0].type.name}`}
           key={pokemon.id}
         >
-          <h1 className="absolute top-0 right-1 text-gray-700">
+          <h1 className="text-gray-600/50 sm:text-5xl text-3xl z-0 tracking-wide">
             {pokemon.id < 10 ? "#00" : pokemon.id < 100 ? "#0" : "#"}
             {pokemon.id}
           </h1>
-          <h1 className="mt-2">
+          <h1 className="mt-0.5 z-10">
             {pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}
           </h1>
 
           <img
-            src={pokemon.sprites.front_default}
+            src={
+              pokemon.sprites.other?.dream_world?.front_default ||
+              pokemon.sprites.front_default
+            }
             alt={pokemon.name}
-            className="xs:min-w-24 min-w-20"
+            className="sm:min-w-32 sm:h-32 xs:min-w-28 xs:h-28 min-w-24 h-24"
           />
 
           <button
@@ -56,7 +64,7 @@ export default function Card({ pokemonId, isFavoritesGrid }: Props) {
               <FaX size={15} />
             </button>
           )}
-          <div className="flex xs:flex-row flex-col items-center justify-center xs:space-y-0 space-y-2 xs:space-x-2 text-xs">
+          <div className="mt-4 flex xs:flex-row flex-col items-center justify-center xs:space-y-0 space-y-2 xs:space-x-2 text-xs">
             <Types types={pokemon.types} />
           </div>
         </div>

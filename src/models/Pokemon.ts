@@ -10,6 +10,11 @@ export interface Pokemon {
   base_experience: number;
   sprites: {
     front_default: string;
+    other?: {
+      dream_world?: {
+        front_default?: string;
+      };
+    };
   };
   abilities: Ability[];
   stats: Stat[];

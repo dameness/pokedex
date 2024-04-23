@@ -3,8 +3,11 @@ import { Link } from "react-router-dom";
 
 export default function Header() {
   return (
-    <header className="flex items-center justify-between w-screen h-14 p-3 mb-4 bg-amber-200/80">
-      <Link className="flex items-center hover:scale-105 transition-all" to="/">
+    <header className="flex items-center justify-between w-screen h-14 p-3 mb-4">
+      <Link
+        className="ml-4 px-1 flex items-center hover:scale-105 transition-all "
+        to="/"
+      >
         <img className="w-8" src="/pokeball.png" alt="pokeball" />
         <img
           className="w-24 mb-1 -ml-0.5"

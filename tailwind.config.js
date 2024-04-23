@@ -37,7 +37,7 @@ export default {
   safelist: [
     {
       pattern:
-        /(bg|text|border|from|to)-(normal|fire|water|electric|grass|ice|fighting|poison|ground|flying|psychic|bug|rock|ghost|dragon|dark|steel|fairy)/,
+        /(bg|text|outline|border|from|to)-(normal|fire|water|electric|grass|ice|fighting|poison|ground|flying|psychic|bug|rock|ghost|dragon|dark|steel|fairy)/,
     },
   ],
   variants: {
