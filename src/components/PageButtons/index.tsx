@@ -12,7 +12,6 @@ export default function PageButtons({ setPage, maxPages }: Props) {
         onClick={() => setPage((page) => (page > 1 ? page - 1 : page))}
       >
         <FaAngleLeft />
-        Prev.
       </StandardButton>
       <StandardButton
         onClick={() =>
@@ -25,7 +24,6 @@ export default function PageButtons({ setPage, maxPages }: Props) {
           })
         }
       >
-        Next
         <FaAngleRight />
       </StandardButton>
     </div>

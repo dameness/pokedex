@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import FavContext from "../../contexts/FavContext";
 import PokemonGrid from "../../components/PokemonGrid";
+import { FaStar } from "react-icons/fa6";
 
 export default function Favorites() {
   const { favorites } = useContext(FavContext);
@@ -11,7 +12,8 @@ export default function Favorites() {
 
   return (
     <div>
-      <h1 className="text-4xl font-bold text-slate-800 mb-6 text-center">
+      <h1 className="text-4xl font-bold text-slate-800 mb-6 text-center flex items-center justify-center gap-2">
+        <FaStar />
         Favorites
       </h1>
       <PokemonGrid pokemonIds={favorites} isFavoritesGrid={true} />
