@@ -6,6 +6,7 @@ import FavContext from "../../contexts/FavContext";
 import Types from "../../components/Types";
 import Stats from "./utils/Stats";
 import Abilities from "./utils/Abilities";
+import StandardButton from "@/components/StandardButton";
 
 export default function ViewPokemon() {
   const { id } = useParams();
@@ -26,33 +27,17 @@ export default function ViewPokemon() {
   }
 
   return (
-    <div className="text-center w-11/12 mx-auto">
-      <div
-        className={`relative flex bg-slate-300 rounded-lg p-2 mb-4 items-center justify-center space-x-2`}
-      >
-        <h1 className="absolute top-1 left-2 text-2xl font-bold">
-          {pokemon.id < 10 ? "#00" : pokemon.id < 100 ? "#0" : "#"}
-          {pokemon.id}
-        </h1>
-        <h1 className="xs:text-2xl text-xl">
-          {pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}
-        </h1>
+    <div className="flex sm:flex-row gap-y-8 flex-col-reverse items-center justify-around">
+      <div className="flex flex-col justify-start bg-slate-300 p-4 rounded-2xl">
+        <div className="flex items-center gap-4 mb-3">
+          <h1 className="text-3xl font-bold">
+            {pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}
+          </h1>
 
-        <div className="flex xs:flex-row flex-col xs:space-x-2 xs:space-y-0 space-y-2">
-          <Types types={pokemon.types} />
+          <div className="flex items-center gap-4">
+            <Types types={pokemon.types} />
+          </div>
         </div>
-
-        <img
-          src={
-            pokemon.sprites.other?.dream_world?.front_default ||
-            pokemon.sprites.front_default
-          }
-          alt={pokemon.name}
-          className="w-24"
-        />
-      </div>
-
-      <div className="space-y-1.5">
         <div className="font-extrabold rounded-sm py-1.5 px-6 bg-slate-300 flex items-center justify-between">
           <h1 className="text-xs">WEIGHT :</h1>
           <h1 className="text-sm">{pokemon.weight}</h1>
@@ -67,13 +52,22 @@ export default function ViewPokemon() {
         </div>
         <Stats stats={pokemon.stats} />
         <Abilities abilities={pokemon.abilities} />
+        <div className="flex items-center gap-2"></div>
+        <div></div>
       </div>
-      <button
-        className="px-3 py-2 bg-slate-300 rounded-xl mt-4"
-        onClick={() => addFavorite(pokemon.id)}
-      >
-        Add Favorite
-      </button>
+      <div className="flex gap-y-4 flex-col justify-center items-center">
+        <img
+          src={
+            pokemon.sprites.other?.dream_world?.front_default ||
+            pokemon.sprites.front_default
+          }
+          alt={pokemon.name}
+          className="min-w-80 w-80"
+        />
+        <StandardButton onClick={() => addFavorite(pokemon.id)}>
+          Add Favorite
+        </StandardButton>
+      </div>
     </div>
   );
 }
