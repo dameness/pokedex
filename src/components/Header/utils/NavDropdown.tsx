@@ -14,9 +14,8 @@ export default function NavDropdown() {
     <div className="mr-8">
       <DropdownMenu>
         <DropdownMenuTrigger>
-          <div className="flex items-center gap-1">
+          <div>
             <Menu />
-            Menu
           </div>
         </DropdownMenuTrigger>
         <DropdownMenuContent>
