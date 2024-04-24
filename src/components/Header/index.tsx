@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import NavDropdown from "./utils/NavDropdown";
 import NavList from "./utils/NavList";
 import { useMediaQuery } from "react-responsive";
+import DarkModeSwitch from "./utils/DarkModeSwitch";
 
 export default function Header() {
   const smallScreen = useMediaQuery({ maxWidth: 640 });
@@ -18,7 +19,7 @@ export default function Header() {
           alt="pokedex-logo"
         />
       </Link>
-
+      <DarkModeSwitch />
       {smallScreen ? <NavDropdown /> : <NavList />}
     </header>
   );

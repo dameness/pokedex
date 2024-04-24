@@ -107,4 +107,5 @@ module.exports = {
       display: ["group-hover"],
     },
   },
+  darkMode: "class",
 };

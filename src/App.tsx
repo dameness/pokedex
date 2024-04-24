@@ -2,10 +2,16 @@ import { RouterProvider } from "react-router-dom";
 import "./App.css";
 import router from "./router";
 import FavContext from "./contexts/FavContext";
+import DarkModeContext from "./contexts/DarkModeContext";
 import { useState } from "react";
 
 export default function App() {
   const [favorites, setFavorites] = useState<number[]>([]);
+  const [darkMode, setDarkMode] = useState<boolean>(false);
+
+  function toggleDarkMode() {
+    setDarkMode((prev) => !prev);
+  }
 
   function addFavorite(id: number) {
     if (favorites.length >= 9) {
@@ -26,8 +32,10 @@ export default function App() {
   }
 
   return (
-    <FavContext.Provider value={{ favorites, addFavorite, removeFavorite }}>
-      <RouterProvider router={router} />
-    </FavContext.Provider>
+    <DarkModeContext.Provider value={{ darkMode, toggleDarkMode }}>
+      <FavContext.Provider value={{ favorites, addFavorite, removeFavorite }}>
+        <RouterProvider router={router} />
+      </FavContext.Provider>
+    </DarkModeContext.Provider>
   );
 }
