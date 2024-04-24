@@ -1,7 +1,5 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import { useParams } from "react-router-dom";
-import { Pokemon } from "../../models/Pokemon";
-import api from "../../config/api";
 import FavContext from "../../contexts/FavContext";
 import Types from "../../components/Types";
 import Stats from "./utils/Stats";
@@ -9,22 +7,15 @@ import Abilities from "./utils/Abilities";
 import StandardButton from "@/components/StandardButton";
 import AttributeDiv from "./utils/AttributeDiv";
 import { Star } from "lucide-react";
+import { useFetchPokemon } from "@/services/pokemon/fetchPokemon";
 
 export default function ViewPokemon() {
-  const { id } = useParams();
+  const { id } = useParams<{ id: string }>() as { id: string };
   const { addFavorite } = useContext(FavContext);
-  const [pokemon, setPokemon] = useState<Pokemon | null>(null);
 
-  useEffect(() => {
-    async function getPokemon() {
-      await api.get(`/pokemon/${id}`).then((res) => {
-        setPokemon(res.data);
-      });
-    }
-    getPokemon();
-  }, []);
+  const { pokemon, isFetching } = useFetchPokemon(+id);
 
-  if (!pokemon) {
+  if (isFetching || !pokemon) {
     return <h1 className="text-center">Loading...</h1>;
   }
 
