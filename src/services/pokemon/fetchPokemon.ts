@@ -2,7 +2,7 @@ import { useCallback, useEffect, useState } from "react";
 import { Pokemon } from "../../models/Pokemon";
 import api from "../../config/api";
 
-export const useFetchPokemons = (id: number) => {
+export const useFetchPokemon = (id: number) => {
   const [pokemon, setPokemon] = useState<Pokemon>();
   const [isFetching, setIsFetching] = useState(false);
 
