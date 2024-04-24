@@ -3,7 +3,9 @@ import { useNavigate } from "react-router-dom";
 import FavContext from "../../contexts/FavContext";
 import Types from "../Types";
 import { FaEye, FaX } from "react-icons/fa6";
-import { useFetchPokemon } from "../../services/pokemon/fetchPokemon";
+import { useQuery } from "react-query";
+import { getPokemon } from "@/services/pokemon/getPokemon";
+import { Pokemon } from "@/models/Pokemon";
 
 interface Props {
   pokemonId: number;
@@ -14,7 +16,10 @@ function Card({ pokemonId, isFavoritesGrid }: Props) {
   const navigate = useNavigate();
   const { removeFavorite } = useContext(FavContext);
 
-  const { pokemon, isFetching } = useFetchPokemon(pokemonId);
+  const { data, isFetching } = useQuery(["pokemon", pokemonId], () =>
+    getPokemon(pokemonId)
+  );
+  const pokemon: Pokemon = data;
 
   if (isFetching) {
     return <></>;

@@ -7,13 +7,16 @@ import Abilities from "./utils/Abilities";
 import StandardButton from "@/components/StandardButton";
 import AttributeDiv from "./utils/AttributeDiv";
 import { Star } from "lucide-react";
-import { useFetchPokemon } from "@/services/pokemon/fetchPokemon";
+import { useQuery } from "react-query";
+import { getPokemon } from "@/services/pokemon/getPokemon";
+import { Pokemon } from "@/models/Pokemon";
 
 export default function ViewPokemon() {
   const { id } = useParams<{ id: string }>() as { id: string };
   const { addFavorite } = useContext(FavContext);
 
-  const { pokemon, isFetching } = useFetchPokemon(+id);
+  const { data, isFetching } = useQuery(["pokemon", id], () => getPokemon(+id));
+  const pokemon: Pokemon = data;
 
   if (isFetching || !pokemon) {
     return <h1 className="text-center">Loading...</h1>;

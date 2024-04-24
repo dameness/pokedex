@@ -4,6 +4,8 @@ import router from "./router";
 import FavContext from "./contexts/FavContext";
 import DarkModeContext from "./contexts/DarkModeContext";
 import { useState } from "react";
+import { QueryClientProvider } from "react-query";
+import queryClient from "./services/queryClient";
 
 export default function App() {
   const [favorites, setFavorites] = useState<number[]>([]);
@@ -32,10 +34,12 @@ export default function App() {
   }
 
   return (
-    <DarkModeContext.Provider value={{ darkMode, toggleDarkMode }}>
-      <FavContext.Provider value={{ favorites, addFavorite, removeFavorite }}>
-        <RouterProvider router={router} />
-      </FavContext.Provider>
-    </DarkModeContext.Provider>
+    <QueryClientProvider client={queryClient}>
+      <DarkModeContext.Provider value={{ darkMode, toggleDarkMode }}>
+        <FavContext.Provider value={{ favorites, addFavorite, removeFavorite }}>
+          <RouterProvider router={router} />
+        </FavContext.Provider>
+      </DarkModeContext.Provider>
+    </QueryClientProvider>
   );
 }

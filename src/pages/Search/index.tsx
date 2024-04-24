@@ -1,8 +1,10 @@
 import { useState } from "react";
-import { useFetchAllPokemons } from "../../services/pokemon/fetchAllPokemons";
 import { FaSearch } from "react-icons/fa";
 import PokemonGrid from "../../components/PokemonGrid";
 import PageButtons from "../../components/PageButtons";
+import { PokemonListItem } from "@/models/PokemonListItem";
+import { useQuery } from "react-query";
+import { getPokemonList } from "@/services/pokemon/getPokemonList";
 
 export default function Search() {
   const [pokemonIds, setPokemonIds] = useState<number[]>([]);
@@ -10,7 +12,8 @@ export default function Search() {
   const [page, setPage] = useState(1);
   const perPage = 9;
 
-  const { pokemonList, isFetching } = useFetchAllPokemons();
+  const { data, isFetching } = useQuery("pokemon-list", () => getPokemonList());
+  const pokemonList: PokemonListItem[] = data;
 
   const getPokemonIds = () => {
     return pokemonIds.slice(
