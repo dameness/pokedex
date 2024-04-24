@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import FavContext from "../../contexts/FavContext";
 import Types from "../Types";
 import { FaEye, FaX } from "react-icons/fa6";
-import { useFetchPokemons } from "../../services/pokemon/fetchPokemon";
+import { useFetchPokemon } from "../../services/pokemon/fetchPokemon";
 
 interface Props {
   pokemonId: number;
@@ -14,7 +14,7 @@ function Card({ pokemonId, isFavoritesGrid }: Props) {
   const navigate = useNavigate();
   const { removeFavorite } = useContext(FavContext);
 
-  const { pokemon, isFetching } = useFetchPokemons(pokemonId);
+  const { pokemon, isFetching } = useFetchPokemon(pokemonId);
 
   if (isFetching) {
     return <></>;
