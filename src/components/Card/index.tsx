@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { memo, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import FavContext from "../../contexts/FavContext";
 import Types from "../Types";
@@ -10,7 +10,7 @@ interface Props {
   isFavoritesGrid: boolean;
 }
 
-export default function Card({ pokemonId, isFavoritesGrid }: Props) {
+function Card({ pokemonId, isFavoritesGrid }: Props) {
   const navigate = useNavigate();
   const { removeFavorite } = useContext(FavContext);
 
@@ -73,3 +73,5 @@ export default function Card({ pokemonId, isFavoritesGrid }: Props) {
     </>
   );
 }
+
+export default memo(Card);
