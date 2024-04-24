@@ -33,7 +33,9 @@ export default function NavDropdown() {
           <DropdownMenuItem>
             <Link
               to="/"
-              className="flex gap-1.5 items-center hover:text-slate-600"
+              className={`flex gap-1.5 items-center hover:${
+                darkMode ? "text-neutral-300" : "text-slate-600"
+              }`}
             >
               <Home size={17} />
               Home
@@ -42,7 +44,9 @@ export default function NavDropdown() {
           <DropdownMenuItem>
             <Link
               to="/favorites"
-              className="flex gap-1.5 items-center hover:text-slate-600"
+              className={`flex gap-1.5 items-center hover:${
+                darkMode ? "text-neutral-300" : "text-slate-600"
+              }`}
             >
               <Star size={17} />
               Favorites
@@ -51,7 +55,9 @@ export default function NavDropdown() {
           <DropdownMenuItem>
             <Link
               to="/search"
-              className="flex gap-1.5 items-center hover:text-slate-600"
+              className={`flex gap-1.5 items-center hover:${
+                darkMode ? "text-neutral-300" : "text-slate-600"
+              }`}
             >
               <Search size={17} />
               Search
