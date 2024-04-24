@@ -29,10 +29,10 @@ function Card({ pokemonId, isFavoritesGrid }: Props) {
           relative flex group flex-col justify-center items-center rounded-xl 
           xs:text-lg text-base text-gray-200 font-bold 
           hover:opacity-85 hover:shadow-md hover:shadow-black 
-          bg-gradient-to-b from-${pokemon.types[0].type.name} to-slate-200 outline outline-${pokemon.types[0].type.name}`}
+          bg-gradient-to-b from-${pokemon.types[0].type.name} dark:to-neutral-600 to-slate-200 outline outline-${pokemon.types[0].type.name}`}
           key={pokemon.id}
         >
-          <h1 className="text-gray-600/50 sm:text-5xl text-3xl z-0 tracking-wide">
+          <h1 className="dark:text-neutral-800/50 text-gray-600/50 sm:text-5xl text-3xl z-0 tracking-wide">
             {pokemon.id < 10 ? "#00" : pokemon.id < 100 ? "#0" : "#"}
             {pokemon.id}
           </h1>
