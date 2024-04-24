@@ -6,19 +6,28 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import DarkModeContext from "@/contexts/DarkModeContext";
+
 import { Home, Menu, Search, Star } from "lucide-react";
+import { useContext } from "react";
+
 import { Link } from "react-router-dom";
 
 export default function NavDropdown() {
+  const { darkMode } = useContext(DarkModeContext);
   return (
-    <div className="mr-8">
+    <div className="mr-8 dark:text-neutral-200">
       <DropdownMenu>
         <DropdownMenuTrigger>
           <div>
             <Menu />
           </div>
         </DropdownMenuTrigger>
-        <DropdownMenuContent>
+        <DropdownMenuContent
+          className={`${
+            darkMode ? "bg-neutral-800/85 text-neutral-200" : "bg-amber-100/85"
+          }`}
+        >
           <DropdownMenuLabel>Options</DropdownMenuLabel>
           <DropdownMenuSeparator />
           <DropdownMenuItem>
