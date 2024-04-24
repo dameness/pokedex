@@ -12,7 +12,7 @@ export default function Favorites() {
 
   return (
     <div>
-      <h1 className="text-4xl font-bold text-slate-800 mb-6 text-center flex items-center justify-center gap-2">
+      <h1 className="text-4xl dark:text-neutral-200 font-bold text-slate-800 mb-6 text-center flex items-center justify-center gap-2">
         <FaStar />
         Favorites
       </h1>

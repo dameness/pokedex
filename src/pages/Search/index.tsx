@@ -38,7 +38,7 @@ export default function Search() {
 
   return (
     <>
-      <h1 className="text-4xl font-bold text-slate-800 mb-6 flex items-center justify-center gap-2">
+      <h1 className="text-4xl dark:text-neutral-200 font-bold text-slate-800 mb-6 flex items-center justify-center gap-2">
         <FaSearch />
         Search
       </h1>
