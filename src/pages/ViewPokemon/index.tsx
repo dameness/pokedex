@@ -15,11 +15,11 @@ export default function ViewPokemon() {
   const { id } = useParams<{ id: string }>() as { id: string };
   const { addFavorite } = useContext(FavContext);
 
-  const { data, isFetching } = useQuery(["pokemon", id], () => getPokemon(+id));
+  const { data, isLoading } = useQuery(["pokemon", id], () => getPokemon(+id));
   const pokemon: Pokemon = data;
 
-  if (isFetching || !pokemon) {
-    return <h1 className="text-center">Loading...</h1>;
+  if (isLoading || !pokemon) {
+    return <h1 className="text-center dark:text-neutral-200">Loading...</h1>;
   }
 
   return (

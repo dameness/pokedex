@@ -17,12 +17,12 @@ function Card({ pokemonId, isFavoritesGrid }: Props) {
   const navigate = useNavigate();
   const { removeFavorite } = useContext(FavContext);
 
-  const { data, isFetching } = useQuery(["pokemon", pokemonId], () =>
+  const { data, isLoading } = useQuery(["pokemon", pokemonId], () =>
     getPokemon(pokemonId)
   );
   const pokemon: Pokemon = data;
 
-  if (!isFetching) {
+  if (isLoading) {
     return <SkeletonCard />;
   }
   return (

@@ -12,7 +12,7 @@ export default function Search() {
   const [page, setPage] = useState(1);
   const perPage = 9;
 
-  const { data, isFetching } = useQuery("pokemon-list", () => getPokemonList());
+  const { data, isLoading } = useQuery("pokemon-list", () => getPokemonList());
   const pokemonList: PokemonListItem[] = data;
 
   const getPokemonIds = () => {
@@ -35,8 +35,8 @@ export default function Search() {
     setPokemonIds(Ids);
   };
 
-  if (isFetching === true) {
-    return <h1>Loading...</h1>;
+  if (isLoading) {
+    return <h1 className="text-center dark:text-neutral-200">Loading...</h1>;
   }
 
   return (
