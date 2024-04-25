@@ -6,6 +6,7 @@ import DarkModeContext from "./contexts/DarkModeContext";
 import { useState } from "react";
 import { QueryClientProvider } from "react-query";
 import queryClient from "./services/queryClient";
+import { Toaster, toast } from "sonner";
 
 export default function App() {
   const [favorites, setFavorites] = useState<number[]>([]);
@@ -17,15 +18,16 @@ export default function App() {
 
   function addFavorite(id: number) {
     if (favorites.length >= 9) {
-      alert("Você alcançou o número máximo de favoritos!");
+      toast.error("Você alcançou o número máximo de favoritos!");
       return;
     }
     if (favorites.findIndex((value) => value === id) !== -1) {
-      alert("Este pokémon já está nos favoritos!");
+      toast.error("Este pokémon já está nos favoritos!");
       return;
     }
     const newFavorites = [...favorites, id];
     setFavorites(newFavorites);
+    toast.success("Pokemón adicionado aos favoritos!");
   }
 
   function removeFavorite(id: number) {
@@ -35,6 +37,11 @@ export default function App() {
 
   return (
     <QueryClientProvider client={queryClient}>
+      <Toaster
+        duration={1500}
+        closeButton={true}
+        theme={darkMode ? "dark" : "light"}
+      />
       <DarkModeContext.Provider value={{ darkMode, toggleDarkMode }}>
         <FavContext.Provider value={{ favorites, addFavorite, removeFavorite }}>
           <RouterProvider router={router} />
