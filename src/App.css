@@ -14,7 +14,7 @@ body {
   font: 14px;
   font-family: sans-serif;
   //background-color: #efefef;
-  @apply bg-amber-100;
+  @apply bg-sky-100;
 }
 
 a {

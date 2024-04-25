@@ -25,7 +25,7 @@ export default function NavDropdown() {
         </DropdownMenuTrigger>
         <DropdownMenuContent
           className={`${
-            darkMode ? "bg-neutral-800/85 text-neutral-200" : "bg-amber-100/85"
+            darkMode ? "bg-neutral-800/85 text-neutral-200" : "bg-sky-100/85"
           }`}
         >
           <DropdownMenuLabel>Options</DropdownMenuLabel>
