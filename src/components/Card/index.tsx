@@ -17,8 +17,12 @@ function Card({ pokemonId, isFavoritesGrid }: Props) {
   const navigate = useNavigate();
   const { removeFavorite } = useContext(FavContext);
 
-  const { data, isLoading } = useQuery(["pokemon", pokemonId], () =>
-    getPokemon(pokemonId)
+  const { data, isLoading } = useQuery(
+    ["pokemon", pokemonId],
+    () => getPokemon(pokemonId),
+    {
+      staleTime: 30 * 1000, // 30 seconds
+    }
   );
   const pokemon: Pokemon = data;
 

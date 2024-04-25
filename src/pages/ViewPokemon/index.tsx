@@ -15,7 +15,9 @@ export default function ViewPokemon() {
   const { id } = useParams<{ id: string }>() as { id: string };
   const { addFavorite } = useContext(FavContext);
 
-  const { data, isLoading } = useQuery(["pokemon", id], () => getPokemon(+id));
+  const { data, isLoading } = useQuery(["pokemon", id], () => getPokemon(+id), {
+    staleTime: 30 * 1000, // 30 seconds
+  });
   const pokemon: Pokemon = data;
 
   if (isLoading || !pokemon) {

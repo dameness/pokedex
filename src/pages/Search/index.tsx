@@ -12,7 +12,9 @@ export default function Search() {
   const [page, setPage] = useState(1);
   const perPage = 9;
 
-  const { data, isLoading } = useQuery("pokemon-list", () => getPokemonList());
+  const { data, isLoading } = useQuery("pokemon-list", () => getPokemonList(), {
+    staleTime: 30 * 1000, // 30 seconds
+  });
   const pokemonList: PokemonListItem[] = data;
 
   const getPokemonIds = () => {
