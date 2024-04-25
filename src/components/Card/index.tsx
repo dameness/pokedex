@@ -7,6 +7,7 @@ import { useQuery } from "react-query";
 import { getPokemon } from "@/services/pokemon/getPokemon";
 import { Pokemon } from "@/models/Pokemon";
 import SkeletonCard from "./utils/SkeletonCard";
+import { useMediaQuery } from "react-responsive";
 
 interface Props {
   pokemonId: number;
@@ -16,6 +17,7 @@ interface Props {
 function Card({ pokemonId, isFavoritesGrid }: Props) {
   const navigate = useNavigate();
   const { removeFavorite } = useContext(FavContext);
+  const smallScreen = useMediaQuery({ maxWidth: 639 });
 
   const { data, isLoading } = useQuery(
     ["pokemon", pokemonId],
@@ -47,7 +49,10 @@ function Card({ pokemonId, isFavoritesGrid }: Props) {
             {pokemon.id}
           </h1>
           <h1 className="mt-0.5 z-10 dark:text-neutral-300">
-            {pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}
+            {pokemon.name.charAt(0).toUpperCase()}
+            {!smallScreen || pokemon.name.length <= 8
+              ? pokemon.name.slice(1)
+              : pokemon.name.slice(1, 8) + "..."}
           </h1>
 
           <img

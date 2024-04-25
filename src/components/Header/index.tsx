@@ -5,7 +5,7 @@ import { useMediaQuery } from "react-responsive";
 import DarkModeSwitch from "./utils/DarkModeSwitch";
 
 export default function Header() {
-  const smallScreen = useMediaQuery({ maxWidth: 640 });
+  const smallScreen = useMediaQuery({ maxWidth: 639 });
   return (
     <header className="flex items-center justify-between w-screen h-14 p-3 mb-4">
       <div className="flex items-center">
