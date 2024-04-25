@@ -6,6 +6,7 @@ import { FaEye, FaX } from "react-icons/fa6";
 import { useQuery } from "react-query";
 import { getPokemon } from "@/services/pokemon/getPokemon";
 import { Pokemon } from "@/models/Pokemon";
+import SkeletonCard from "./utils/SkeletonCard";
 
 interface Props {
   pokemonId: number;
@@ -21,8 +22,8 @@ function Card({ pokemonId, isFavoritesGrid }: Props) {
   );
   const pokemon: Pokemon = data;
 
-  if (isFetching) {
-    return <></>;
+  if (!isFetching) {
+    return <SkeletonCard />;
   }
   return (
     <>
