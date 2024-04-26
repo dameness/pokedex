@@ -20,7 +20,7 @@ export default function NavList() {
       >
         <div className="relative">
           {favorites.length > 0 && (
-            <div className="absolute -bottom-2 -left-2 text-[9px] bg-red-300 dark:text-black w-3.5 h-3.5 rounded-full flex items-center justify-center">
+            <div className="absolute -bottom-2 -left-2 text-[9px] bg-red-300 text-black w-3.5 h-3.5 rounded-full flex items-center justify-center">
               {favorites.length}
             </div>
           )}

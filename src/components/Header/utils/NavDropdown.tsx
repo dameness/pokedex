@@ -7,6 +7,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import DarkModeContext from "@/contexts/DarkModeContext";
+import FavContext from "@/contexts/FavContext";
 
 import { Home, Menu, Search, Star } from "lucide-react";
 import { useContext } from "react";
@@ -15,6 +16,7 @@ import { Link } from "react-router-dom";
 
 export default function NavDropdown() {
   const { darkMode } = useContext(DarkModeContext);
+  const { favorites } = useContext(FavContext);
   return (
     <div className="mr-8 dark:text-neutral-200">
       <DropdownMenu>
@@ -48,8 +50,13 @@ export default function NavDropdown() {
                 darkMode ? "text-neutral-300" : "text-slate-600"
               }`}
             >
-              <Star size={17} />
+              <Star className="mr-1" size={17} />
               Favorites
+              {favorites.length > 0 && (
+                <div className=" text-[9px] bg-red-300 text-black w-3.5 h-3.5 rounded-full flex items-center justify-center">
+                  {favorites.length}
+                </div>
+              )}
             </Link>
           </DropdownMenuItem>
           <DropdownMenuItem>
