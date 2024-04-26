@@ -9,7 +9,16 @@ import queryClient from "./services/queryClient";
 import { Toaster, toast } from "sonner";
 
 export default function App() {
-  const [favorites, setFavorites] = useState<number[]>([]);
+  const [favorites, setFavorites] = useState<number[]>(() => {
+    const storageData = localStorage.getItem("favorite-pokemons");
+
+    if (storageData) {
+      return JSON.parse(storageData);
+    } else {
+      return [];
+    }
+  });
+
   const [darkMode, setDarkMode] = useState<boolean>(false);
 
   function toggleDarkMode() {
@@ -27,12 +36,15 @@ export default function App() {
     }
     const newFavorites = [...favorites, id];
     setFavorites(newFavorites);
+    localStorage.setItem("favorite-pokemons", JSON.stringify(newFavorites));
     toast.success("Pokemón added to favorites!");
   }
 
   function removeFavorite(id: number) {
     const newFavorites = favorites.filter((pokemonId) => pokemonId != id);
     setFavorites(newFavorites);
+    localStorage.setItem("favorite-pokemons", JSON.stringify(newFavorites));
+    toast.success("Pokemón removed from favorites!");
   }
 
   return (
