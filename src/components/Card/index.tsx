@@ -7,6 +7,7 @@ import { Pokemon } from "@/models/Pokemon";
 import SkeletonCard from "./utils/SkeletonCard";
 import { useMediaQuery } from "react-responsive";
 import { useFetchPokemon } from "@/services/pokemon/useFetchPokemon";
+import { StarIcon } from "lucide-react";
 
 interface Props {
   pokemonId: number;
@@ -15,7 +16,7 @@ interface Props {
 
 function Card({ pokemonId, isFavoritesGrid }: Props) {
   const navigate = useNavigate();
-  const { removeFavorite } = useContext(FavContext);
+  const { removeFavorite, addFavorite } = useContext(FavContext);
   const smallScreen = useMediaQuery({ maxWidth: 639 });
 
   const { data, isLoading } = useFetchPokemon(pokemonId);
@@ -65,12 +66,19 @@ function Card({ pokemonId, isFavoritesGrid }: Props) {
           >
             <FaEye size={15} />
           </button>
-          {isFavoritesGrid && (
+          {isFavoritesGrid ? (
             <button
               className="hidden group-hover:inline-block bg-red-300 text-gray-600 p-2 rounded-full absolute top-1 right-1  hover:scale-105 hover:text-gray-700 transition-all"
               onClick={() => removeFavorite(pokemon.id)}
             >
               <FaX size={15} />
+            </button>
+          ) : (
+            <button
+              className="hidden group-hover:inline-block bg-amber-400 text-gray-600 p-2 rounded-full absolute top-1 right-1  hover:scale-105 hover:text-gray-700 transition-all"
+              onClick={() => addFavorite(pokemon.id)}
+            >
+              <StarIcon size={15} />
             </button>
           )}
           <div className="mt-4 flex xs:flex-row flex-col items-center justify-center xs:space-y-0 space-y-2 xs:space-x-2 text-xs">
