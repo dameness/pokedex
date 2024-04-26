@@ -3,11 +3,10 @@ import { useNavigate } from "react-router-dom";
 import FavContext from "../../contexts/FavContext";
 import Types from "../Types";
 import { FaEye, FaX } from "react-icons/fa6";
-import { useQuery } from "react-query";
-import { getPokemon } from "@/services/pokemon/getPokemon";
 import { Pokemon } from "@/models/Pokemon";
 import SkeletonCard from "./utils/SkeletonCard";
 import { useMediaQuery } from "react-responsive";
+import { useFetchPokemon } from "@/services/pokemon/useFetchPokemon";
 
 interface Props {
   pokemonId: number;
@@ -19,13 +18,7 @@ function Card({ pokemonId, isFavoritesGrid }: Props) {
   const { removeFavorite } = useContext(FavContext);
   const smallScreen = useMediaQuery({ maxWidth: 639 });
 
-  const { data, isLoading } = useQuery(
-    ["pokemon", pokemonId],
-    () => getPokemon(pokemonId),
-    {
-      staleTime: 30 * 1000, // 30 seconds
-    }
-  );
+  const { data, isLoading } = useFetchPokemon(pokemonId);
   const pokemon: Pokemon = data;
 
   if (isLoading) {

@@ -3,8 +3,7 @@ import { FaSearch } from "react-icons/fa";
 import PokemonGrid from "../../components/PokemonGrid";
 import PageButtons from "../../components/PageButtons";
 import { PokemonListItem } from "@/models/PokemonListItem";
-import { useQuery } from "react-query";
-import { getPokemonList } from "@/services/pokemon/getPokemonList";
+import { useFetchPokemonList } from "@/services/pokemon/useFetchPokemonList";
 
 export default function Search() {
   const [pokemonIds, setPokemonIds] = useState<number[]>([]);
@@ -12,9 +11,8 @@ export default function Search() {
   const [page, setPage] = useState(1);
   const perPage = 9;
 
-  const { data, isLoading } = useQuery("pokemon-list", () => getPokemonList(), {
-    staleTime: 30 * 1000, // 30 seconds
-  });
+  const { data, isLoading } = useFetchPokemonList();
+
   const pokemonList: PokemonListItem[] = data;
 
   const getPokemonIds = () => {
