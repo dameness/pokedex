@@ -18,16 +18,16 @@ export default function App() {
 
   function addFavorite(id: number) {
     if (favorites.length >= 9) {
-      toast.error("Você alcançou o número máximo de favoritos!");
+      toast.warning("Max number of favorites reached!");
       return;
     }
     if (favorites.findIndex((value) => value === id) !== -1) {
-      toast.error("Este pokémon já está nos favoritos!");
+      toast.warning("This pokémon is already in your favorites!");
       return;
     }
     const newFavorites = [...favorites, id];
     setFavorites(newFavorites);
-    toast.success("Pokemón adicionado aos favoritos!");
+    toast.success("Pokemón added to favorites!");
   }
 
   function removeFavorite(id: number) {

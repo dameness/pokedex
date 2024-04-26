@@ -4,6 +4,7 @@ import PokemonGrid from "../../components/PokemonGrid";
 import PageButtons from "../../components/PageButtons";
 import { PokemonListItem } from "@/models/PokemonListItem";
 import { useFetchPokemonList } from "@/services/pokemon/useFetchPokemonList";
+import { toast } from "sonner";
 
 export default function Search() {
   const [pokemonIds, setPokemonIds] = useState<number[]>([]);
@@ -23,6 +24,8 @@ export default function Search() {
   };
 
   const filterPokemons = () => {
+    if (input.length == 0) return;
+
     const data = pokemonList.filter((pokemon) => pokemon.name.includes(input));
 
     const Ids: number[] = [];
@@ -30,6 +33,9 @@ export default function Search() {
     data.forEach((pokemon) => {
       Ids.push(+pokemon.url.slice(34, -1));
     });
+
+    if (Ids.length == 0)
+      toast.error("No pokemóns found!", { position: "top-center" });
 
     setPage(1);
     setPokemonIds(Ids);
