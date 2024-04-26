@@ -11,7 +11,7 @@ export default function PokemonGrid({ pokemonIds, isFavoritesGrid }: Props) {
   }
   return (
     <div
-      className={`grid-cols-3 xs:gap-x-10 gap-y-4 gap-x-3 ${
+      className={`xs:grid-cols-3 grid-cols-2  xs:gap-x-10 gap-y-4 gap-x-3 ${
         pokemonIds.length > 2
           ? "grid"
           : "xs:flex grid  justify-center items-start"
