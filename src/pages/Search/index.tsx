@@ -23,7 +23,8 @@ export default function Search() {
     );
   };
 
-  const filterPokemons = () => {
+  const filterPokemons = (event: React.FormEvent) => {
+    event.preventDefault();
     if (input.length == 0) return;
 
     const data = pokemonList.filter((pokemon) => pokemon.name.includes(input));
@@ -52,7 +53,10 @@ export default function Search() {
         Search
       </h1>
       <div className="flex flex-col justify-center items-center">
-        <div className="flex items-center mb-8 gap-1">
+        <form
+          className="flex items-center mb-8 gap-1 "
+          onSubmit={filterPokemons}
+        >
           <input
             className="bg-white px-4 py-2 rounded-lg "
             type="text"
@@ -61,12 +65,12 @@ export default function Search() {
             onChange={(e) => setInput(e.target.value)}
           />
           <button
-            className="p-3 rounded-lg bg-slate-200 hover:bg-slate-700 hover:text-slate-200 transition-all"
-            onClick={filterPokemons}
+            className="p-3 rounded-lg bg-slate-200 hover:bg-neutral-600 hover:text-slate-200 transition-all"
+            type="submit"
           >
             <FaSearch />
           </button>
-        </div>
+        </form>
 
         {pokemonIds.length > 0 && (
           <>
