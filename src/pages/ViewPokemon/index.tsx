@@ -1,6 +1,4 @@
-import { useContext } from "react";
 import { useParams } from "react-router-dom";
-import FavContext from "../../contexts/FavContext";
 import Types from "../../components/Types";
 import Stats from "./utils/Stats";
 import Abilities from "./utils/Abilities";
@@ -9,11 +7,12 @@ import AttributeDiv from "./utils/AttributeDiv";
 import { Star } from "lucide-react";
 import { Pokemon } from "@/models/Pokemon";
 import { useFetchPokemon } from "@/services/pokemon/useFetchPokemon";
+import { addFavorite } from "@/lib/redux/reducers/favReducer";
+import { useAppDispatch } from "@/hooks/useReduxHooks";
 
 export default function ViewPokemon() {
   const { id } = useParams<{ id: string }>() as { id: string };
-  const { addFavorite } = useContext(FavContext);
-
+  const dispatch = useAppDispatch();
   const { data, isLoading } = useFetchPokemon(id);
 
   /**
@@ -65,7 +64,7 @@ export default function ViewPokemon() {
           alt={pokemon.name}
           className="min-w-80 w-80"
         />
-        <StandardButton onClick={() => addFavorite(pokemon.id)}>
+        <StandardButton onClick={() => dispatch(addFavorite(pokemon.id))}>
           <Star className="-mr-0.5" size={20} />
           Add to Favorites
         </StandardButton>

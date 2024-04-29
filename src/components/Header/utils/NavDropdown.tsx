@@ -7,16 +7,16 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import DarkModeContext from "@/contexts/DarkModeContext";
-import FavContext from "@/contexts/FavContext";
 
 import { Home, Menu, Search, Star } from "lucide-react";
 import { useContext } from "react";
 
 import { Link } from "react-router-dom";
+import { useAppSelector } from "@/hooks/useReduxHooks";
 
 export default function NavDropdown() {
   const { darkMode } = useContext(DarkModeContext);
-  const { favorites } = useContext(FavContext);
+  const { favorites } = useAppSelector((state) => state.favorites);
   return (
     <div className="mr-8 dark:text-neutral-200">
       <DropdownMenu>

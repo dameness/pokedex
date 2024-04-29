@@ -1,6 +1,5 @@
-import { memo, useContext } from "react";
+import { memo } from "react";
 import { useNavigate } from "react-router-dom";
-import FavContext from "../../contexts/FavContext";
 import Types from "../Types";
 import { FaEye, FaX } from "react-icons/fa6";
 import { Pokemon } from "@/models/Pokemon";
@@ -8,6 +7,8 @@ import SkeletonCard from "./utils/SkeletonCard";
 import { useMediaQuery } from "react-responsive";
 import { useFetchPokemon } from "@/services/pokemon/useFetchPokemon";
 import { StarIcon } from "lucide-react";
+import { useAppDispatch } from "@/hooks/useReduxHooks";
+import { addFavorite, removeFavorite } from "@/lib/redux/reducers/favReducer";
 
 interface Props {
   pokemonId: number;
@@ -16,7 +17,7 @@ interface Props {
 
 function Card({ pokemonId, isFavoritesGrid }: Props) {
   const navigate = useNavigate();
-  const { removeFavorite, addFavorite } = useContext(FavContext);
+  const dispatch = useAppDispatch();
   const smallScreen = useMediaQuery({ maxWidth: 639 });
 
   const { data, isLoading } = useFetchPokemon(pokemonId);
@@ -69,14 +70,14 @@ function Card({ pokemonId, isFavoritesGrid }: Props) {
           {isFavoritesGrid ? (
             <button
               className="hidden group-hover:inline-block bg-red-300 text-gray-600 p-2 rounded-full absolute top-1 right-1  hover:scale-105 hover:text-gray-700 transition-all"
-              onClick={() => removeFavorite(pokemon.id)}
+              onClick={() => dispatch(removeFavorite(pokemon.id))}
             >
               <FaX size={15} />
             </button>
           ) : (
             <button
               className="hidden group-hover:inline-block bg-amber-400 text-gray-600 p-2 rounded-full absolute top-1 right-1  hover:scale-105 hover:text-gray-700 transition-all"
-              onClick={() => addFavorite(pokemon.id)}
+              onClick={() => dispatch(addFavorite(pokemon.id))}
             >
               <StarIcon size={15} />
             </button>

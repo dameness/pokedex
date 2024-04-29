@@ -1,10 +1,9 @@
-import { useContext } from "react";
-import FavContext from "../../contexts/FavContext";
 import PokemonGrid from "../../components/PokemonGrid";
 import { FaStar } from "react-icons/fa6";
+import { useAppSelector } from "@/hooks/useReduxHooks";
 
 export default function Favorites() {
-  const { favorites } = useContext(FavContext);
+  const { favorites } = useAppSelector((state) => state.favorites);
 
   if (favorites.length === 0) {
     return (

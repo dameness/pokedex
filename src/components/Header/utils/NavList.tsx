@@ -1,10 +1,9 @@
-import FavContext from "@/contexts/FavContext";
 import { Home, Search, Star } from "lucide-react";
-import { useContext } from "react";
 import { Link } from "react-router-dom";
+import { useAppSelector } from "@/hooks/useReduxHooks";
 
 export default function NavList() {
-  const { favorites } = useContext(FavContext);
+  const { favorites } = useAppSelector((state) => state.favorites);
   return (
     <div className="font-extrabold flex items-center space-x-4 mr-4 text-xs xs:text-sm">
       <Link

@@ -1,50 +1,19 @@
 import { RouterProvider } from "react-router-dom";
 import "./App.css";
 import router from "./router";
-import FavContext from "./contexts/FavContext";
 import DarkModeContext from "./contexts/DarkModeContext";
 import { useState } from "react";
 import { QueryClientProvider } from "react-query";
 import queryClient from "./services/queryClient";
-import { Toaster, toast } from "sonner";
+import { Toaster } from "sonner";
+import { Provider } from "react-redux";
+import { store } from "./lib/redux/store";
 
 export default function App() {
-  const [favorites, setFavorites] = useState<number[]>(() => {
-    const storageData = localStorage.getItem("favorite-pokemons");
-
-    if (storageData) {
-      return JSON.parse(storageData);
-    } else {
-      return [];
-    }
-  });
-
   const [darkMode, setDarkMode] = useState<boolean>(false);
 
   function toggleDarkMode() {
     setDarkMode((prev) => !prev);
-  }
-
-  function addFavorite(id: number) {
-    if (favorites.length >= 9) {
-      toast.warning("Max number of favorites reached!");
-      return;
-    }
-    if (favorites.findIndex((value) => value === id) !== -1) {
-      toast.warning("This pokémon is already in your favorites!");
-      return;
-    }
-    const newFavorites = [...favorites, id];
-    setFavorites(newFavorites);
-    localStorage.setItem("favorite-pokemons", JSON.stringify(newFavorites));
-    toast.success("Pokemón added to favorites!");
-  }
-
-  function removeFavorite(id: number) {
-    const newFavorites = favorites.filter((pokemonId) => pokemonId != id);
-    setFavorites(newFavorites);
-    localStorage.setItem("favorite-pokemons", JSON.stringify(newFavorites));
-    toast.success("Pokemón removed from favorites!");
   }
 
   return (
@@ -55,9 +24,9 @@ export default function App() {
         theme={darkMode ? "dark" : "light"}
       />
       <DarkModeContext.Provider value={{ darkMode, toggleDarkMode }}>
-        <FavContext.Provider value={{ favorites, addFavorite, removeFavorite }}>
+        <Provider store={store}>
           <RouterProvider router={router} />
-        </FavContext.Provider>
+        </Provider>
       </DarkModeContext.Provider>
     </QueryClientProvider>
   );
