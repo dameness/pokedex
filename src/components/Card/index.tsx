@@ -31,7 +31,7 @@ function Card({ pokemonId, isFavoritesGrid }: Props) {
       {pokemon && (
         <div
           className={`
-          h-full w-full
+          h-full w-[27vw]
           sm:px-16 py-4 px-12  
           relative flex group flex-col justify-center items-center rounded-xl 
           xs:text-lg text-base text-gray-200 font-bold 

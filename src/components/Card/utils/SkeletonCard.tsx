@@ -3,7 +3,7 @@ export default function SkeletonCard() {
   return (
     <div
       className={`  
-          h-full xs:w-full 
+          h-full w-[27vw]
           sm:px-16 py-4 px-12  
           relative flex flex-col justify-center items-center rounded-xl 
           bg-slate-200 dark:bg-neutral-600 outline outline-slate-200 dark:outline-neutral-600`}
