@@ -44,10 +44,10 @@ function Card({ pokemonId, isFavoritesGrid }: Props) {
             {pokemon.id}
           </h1>
           <h1 className="mt-0.5 z-10 dark:text-neutral-300">
-            {pokemon.name.charAt(0).toUpperCase()}
-            {!smallScreen || pokemon.name.length <= 8
-              ? pokemon.name.slice(1)
-              : pokemon.name.slice(1, 8) + "..."}
+            {pokemon.species.name.charAt(0).toUpperCase()}
+            {!smallScreen || pokemon.species.name.length <= 8
+              ? pokemon.species.name.slice(1)
+              : pokemon.species.name.slice(1, 8) + "..."}
           </h1>
 
           <img

@@ -31,7 +31,11 @@ export default function ViewPokemon() {
       <div className="flex flex-col justify-start bg-slate-300 dark:bg-neutral-200/70 p-4 rounded-2xl">
         <div className="flex items-center gap-4 mb-3">
           <h1 className="text-3xl font-bold">
-            {pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}
+            {pokemon.name
+              .split("-")
+              .map(
+                (slice) => slice.charAt(0).toUpperCase() + slice.slice(1) + " "
+              )}
           </h1>
 
           <div className="flex items-center gap-4">
