@@ -1,8 +1,7 @@
+import { PokemonListItem } from "./PokemonListItem";
+
 export interface Ability {
-  ability: {
-    name: string;
-    url: string;
-  };
+  ability: PokemonListItem;
   is_hidden: boolean;
   slot: number;
 }

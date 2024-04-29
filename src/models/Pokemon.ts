@@ -1,6 +1,7 @@
 import { Stat } from "./Stat";
 import { Ability } from "./Ability";
 import { Type } from "./Type";
+import { PokemonListItem } from "./PokemonListItem";
 
 export interface Pokemon {
   id: number;
@@ -19,4 +20,5 @@ export interface Pokemon {
   abilities: Ability[];
   stats: Stat[];
   types: Type[];
+  species: PokemonListItem;
 }
