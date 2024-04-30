@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { FaSearch } from "react-icons/fa";
 import PokemonGrid from "../../components/PokemonGrid";
 import PageButtons from "../../components/PageButtons";
@@ -12,6 +12,8 @@ export default function Search() {
   const [page, setPage] = useState(1);
   const perPage = 9;
 
+  const inputRef = useRef<HTMLInputElement>(null);
+
   const { data, isLoading } = useFetchPokemonList();
 
   const pokemonList: PokemonListItem[] = data;
@@ -23,11 +25,16 @@ export default function Search() {
     );
   };
 
+  const filterSearchBar = pokemonList?.filter(
+    (pokemon) =>
+      input && pokemon.name.toLowerCase().includes(input.toLowerCase())
+  );
+
   const filterPokemons = (event: React.FormEvent) => {
     event.preventDefault();
     if (input.length == 0) return;
 
-    const data = pokemonList.filter((pokemon) => pokemon.name.includes(input));
+    const data = filterSearchBar;
 
     const Ids: number[] = [];
 
@@ -39,6 +46,7 @@ export default function Search() {
       toast.error("No pokemóns found!", { position: "top-center" });
 
     setPage(1);
+    setInput("");
     setPokemonIds(Ids);
   };
 
@@ -54,22 +62,43 @@ export default function Search() {
       </h1>
       <div className="flex flex-col justify-center items-center">
         <form
-          className="flex items-center mb-8 gap-1 "
+          className="flex items-center mb-8 gap-1 relative"
           onSubmit={filterPokemons}
         >
           <input
-            className="bg-white px-4 py-2 rounded-lg "
+            className=" bg-white px-4 py-2 rounded-lg "
             type="text"
             placeholder="Search pokémon..."
             value={input}
+            ref={inputRef}
             onChange={(e) => setInput(e.target.value)}
           />
+
           <button
             className="p-3 rounded-lg bg-slate-200 hover:bg-neutral-600 hover:text-slate-200 transition-all"
             type="submit"
           >
             <FaSearch />
           </button>
+
+          <ul
+            className={`${
+              filterSearchBar.length == 0 && "hidden"
+            } absolute top-10 p-2 z-50 bg-white w-[84%]`}
+          >
+            {filterSearchBar.slice(0, 5).map((item) => (
+              <li
+                className="py-0.5"
+                key={item.name}
+                onClick={() => {
+                  setInput(item.name);
+                  inputRef.current?.focus();
+                }}
+              >
+                {item.name}
+              </li>
+            ))}
+          </ul>
         </form>
 
         {pokemonIds.length > 0 && (
