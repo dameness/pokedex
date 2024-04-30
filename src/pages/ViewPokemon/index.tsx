@@ -30,7 +30,7 @@ export default function ViewPokemon() {
     <div className="flex sm:flex-row gap-y-8 flex-col-reverse items-center justify-around">
       <div className="flex flex-col justify-start bg-slate-300 dark:bg-neutral-200/70 p-4 rounded-2xl">
         <div className="flex items-center gap-4 mb-3">
-          <h1 className="text-3xl font-bold">
+          <h1 className="text-3xl font-bold ">
             {pokemon.name
               .split("-")
               .map(
@@ -63,6 +63,7 @@ export default function ViewPokemon() {
         <img
           src={
             pokemon.sprites.other?.dream_world?.front_default ||
+            pokemon.sprites.other?.home?.front_default ||
             pokemon.sprites.front_default
           }
           alt={pokemon.name}

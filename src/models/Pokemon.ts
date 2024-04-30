@@ -15,6 +15,9 @@ export interface Pokemon {
       dream_world?: {
         front_default?: string;
       };
+      home?: {
+        front_default?: string;
+      };
     };
   };
   abilities: Ability[];

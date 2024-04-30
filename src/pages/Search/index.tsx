@@ -36,7 +36,7 @@ export default function Search() {
   );
 
   const suggestions =
-    filterStartsWith.length > 0 ? filterStartsWith : filterIncludes;
+    filterStartsWith?.length > 0 ? filterStartsWith : filterIncludes;
 
   const filterPokemons = (event: React.FormEvent) => {
     event.preventDefault();
