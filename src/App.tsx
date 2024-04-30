@@ -7,7 +7,8 @@ import { QueryClientProvider } from "react-query";
 import queryClient from "./services/queryClient";
 import { Toaster } from "sonner";
 import { Provider } from "react-redux";
-import { store } from "./lib/redux/store";
+import { persistor, store } from "./lib/redux/store";
+import { PersistGate } from "redux-persist/integration/react";
 
 export default function App() {
   const [darkMode, setDarkMode] = useState<boolean>(false);
@@ -24,9 +25,11 @@ export default function App() {
         theme={darkMode ? "dark" : "light"}
       />
       <DarkModeContext.Provider value={{ darkMode, toggleDarkMode }}>
-        <Provider store={store}>
-          <RouterProvider router={router} />
-        </Provider>
+        <PersistGate loading={null} persistor={persistor}>
+          <Provider store={store}>
+            <RouterProvider router={router} />
+          </Provider>
+        </PersistGate>
       </DarkModeContext.Provider>
     </QueryClientProvider>
   );

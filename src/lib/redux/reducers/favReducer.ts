@@ -5,12 +5,8 @@ export interface favSliceState {
   favorites: number[];
 }
 
-const initialState = () => {
-  const pokemons = localStorage.getItem("favorite-pokemons");
-  const data: number[] = pokemons ? JSON.parse(pokemons) : [];
-  return {
-    favorites: data,
-  };
+const initialState: favSliceState = {
+  favorites: [],
 };
 
 const favSlice: Slice<favSliceState> = createSlice({
@@ -30,10 +26,6 @@ const favSlice: Slice<favSliceState> = createSlice({
       }
 
       state.favorites.push(id);
-      localStorage.setItem(
-        "favorite-pokemons",
-        JSON.stringify(state.favorites)
-      );
       toast.success("Pokemón added to favorites!");
     },
     removeFavorite: (state, action) => {
@@ -43,7 +35,6 @@ const favSlice: Slice<favSliceState> = createSlice({
         (pokemonId) => pokemonId != id
       );
       state.favorites = newFavorites;
-      localStorage.setItem("favorite-pokemons", JSON.stringify(newFavorites));
       toast.success("Pokemón removed from favorites!");
     },
   },
