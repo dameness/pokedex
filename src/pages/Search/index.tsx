@@ -25,16 +25,24 @@ export default function Search() {
     );
   };
 
-  const filterSearchBar = pokemonList?.filter(
+  const filterStartsWith = pokemonList?.filter(
+    (pokemon) =>
+      input && pokemon.name.toLowerCase().startsWith(input.toLowerCase())
+  );
+
+  const filterIncludes = pokemonList?.filter(
     (pokemon) =>
       input && pokemon.name.toLowerCase().includes(input.toLowerCase())
   );
+
+  const suggestions =
+    filterStartsWith.length > 0 ? filterStartsWith : filterIncludes;
 
   const filterPokemons = (event: React.FormEvent) => {
     event.preventDefault();
     if (input.length == 0) return;
 
-    const data = filterSearchBar;
+    const data = filterIncludes;
 
     const Ids: number[] = [];
 
@@ -83,10 +91,10 @@ export default function Search() {
 
           <ul
             className={`${
-              filterSearchBar.length == 0 && "hidden"
-            } absolute top-10 px-4 py-2 z-50 bg-white w-[84%] rounded-lg`}
+              filterIncludes.length == 0 && "hidden"
+            } border absolute hover:cursor-pointer top-10 px-4 py-2 z-50 bg-white w-[84%] rounded-lg`}
           >
-            {filterSearchBar.slice(0, 5).map((item) => (
+            {suggestions.slice(0, 5).map((item) => (
               <li
                 className="py-0.5"
                 key={item.name}
