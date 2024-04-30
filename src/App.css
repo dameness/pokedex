@@ -13,7 +13,6 @@ body,
 body {
   font: 14px;
   font-family: sans-serif;
-  //background-color: #efefef;
   @apply bg-sky-100;
 }
 

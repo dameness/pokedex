@@ -84,7 +84,7 @@ export default function Search() {
           <ul
             className={`${
               filterSearchBar.length == 0 && "hidden"
-            } absolute top-10 p-2 z-50 bg-white w-[84%]`}
+            } absolute top-10 px-4 py-2 z-50 bg-white w-[84%] rounded-lg`}
           >
             {filterSearchBar.slice(0, 5).map((item) => (
               <li
